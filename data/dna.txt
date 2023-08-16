@@ -7,6 +7,7 @@
         "index.html",
         "readme.html",
         "readmeeditor.html",
+        "scroll-deleter.html",
         "scroll-list.txt",
         "trashmagic.css",
         "trashmagic.js",
@@ -40,7 +41,6 @@
         "hypercube",
         "magic_dump",
         "skeletron",
-        "the_nature_of_the_bug_remains_mysterious",
         "trash_magic",
         "trash_magic_server",
         "voice_of_the_slime"

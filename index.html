@@ -32,7 +32,7 @@
 <body>    
 
 
-<div id = "editbutton" ><span style = "color:red;">!!</span>EDIT<span style = "color:red">!!</span></div>
+<div id = "editbutton" ><span style = "color:red;">!!</span>EDIT LIST<span style = "color:red">!!</span></div>
 <div id = "header">
     <!--
     <a id = "uplink" href = "index.html"><img src = "iconsymbols/home.svg"/></a>
@@ -64,6 +64,8 @@ resetfeed = [
     "geometron",
     "books"
 ];
+
+
 
 
 editMode = false;
@@ -208,11 +210,14 @@ function redraw(){
         textspan.className = "textspan";
         textspan.innerHTML = feed[index];
         newbox.appendChild(textspan);
-        newbox.onclick = function(){
-            currentScroll = this.getElementsByTagName("SPAN")[0].innerHTML;
-            console.log(currentScroll);
-            loadscroll();
+        
+        if(!editMode){
+            newbox.onclick = function(){
+                currentScroll = this.getElementsByClassName("textspan")[0].innerHTML;
+                loadscroll();
+            }            
         }
+
         boxes.push(newbox);
         
     }
@@ -314,7 +319,9 @@ document.getElementById("refresh").onclick = function(){
     editMode = false;
     document.getElementById("header").style.display = "none";
     document.getElementById("editbutton").style.display ="block";
-    
+    document.getElementById("board1").style.display ="block";
+    document.getElementById("feed").style.bottom ="50%";
+
 
     loadfeed();
 }
@@ -330,7 +337,8 @@ document.getElementById("textinput").onkeydown = function(a) {
         editMode = false;
         document.getElementById("header").style.display = "none";
         document.getElementById("editbutton").style.display ="block";
-        
+        document.getElementById("board1").style.display ="block";
+        document.getElementById("feed").style.bottom ="50%";
 
         loadfeed();
     }
@@ -372,6 +380,9 @@ document.getElementById("editbutton").onclick = function(){
     editMode = true;
     loadfeed();
     document.getElementById("header").style.display = "block";
+    
+    document.getElementById("board1").style.display ="none";
+    document.getElementById("feed").style.bottom ="1%";
     document.getElementById("textinput").select();
 }
 
@@ -488,8 +499,8 @@ H1{
     top:5px;
     border-width:5px;
     border-radius:10px;
-    left:40%;
-    right:40%;
+    left:30%;
+    right:30%;
     border:solid;
     cursor:pointer;
 }
