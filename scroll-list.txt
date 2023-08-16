@@ -1,10 +1,3 @@
 [
-    "follow_the_white_rabbit",
-    "trash_magic_server",
-    "magic_dump",
-    "hypercube",
-    "voice_of_the_slime",
-    "skeletron",
-    "geometron",
-    "books"
+    "trash_magic"
 ]
