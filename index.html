@@ -4,11 +4,6 @@
     <meta charset="utf-8">
     <!--
 
-make your own page and link to it!
-
-to make a new page, create a name that ends with ".html" and has no spaces, uses only characters that work in a web address. for example, if your name is CHAOS RABBIT, you might create a file called CHAOS_RABBIT.html.
-
-to create the new page, enter the name in the input at the top of the screen in webeditor.html and hit enter.  You can copy any of a number of templates and then edit the code to make it your own.  Templates include TRASH MAGIC, green screen brutalist, typewriter.
 
 
         EVERYTHING IS PHYSICAL
@@ -31,31 +26,9 @@ to create the new page, enter the name in the input at the top of the screen in 
     <META NAME="robots" CONTENT="noindex,nofollow">
 
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<!--un-comment to add math: -->
-<!-- (to add amth, also scroll down to the bottom of the redraw() function and un-comment the update command there) -->
-<!--
-
-
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script>
-            MathJax.Hub.Config({
-                tex2jax: {
-                inlineMath: [['$','$'], ['\\(','\\)']],
-                processEscapes: true,
-                processClass: "mathjax",
-                ignoreClass: "no-mathjax"
-                }
-            });//			MathJax.Hub.Typeset();//tell Mathjax to update the math
-        </script>
-
--->
 </head>
 <body>    
-<a id = "link1" href = "index.html" style = "position:absolute;z-index:1;left:10px;top:10px;font-size:3em">HOME</a>
 
-<a id = "link2" href = "tiktok-list.html" style = "position:absolute;z-index:1;right:10px;top:10px;font-size:3em">Alphabetized Link List</a>
 
 <div id = "editbutton" ><span style = "color:red;">!!</span>EDIT<span style = "color:red">!!</span></div>
 <div id = "header">
@@ -80,7 +53,14 @@ feedname = "Trash Magic Ontology";
 //add a default feed here for any given feed instance:
 
 resetfeed = [
-"trash_magic"
+    "trash_magic",
+    "trash_magic_server",
+    "magic_dump",
+    "hypercube",
+    "voice_of_the_slime",
+    "skeletron",
+    "geometron",
+    "books"
 ];
 
 
@@ -164,7 +144,6 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
         document.getElementById("feed").appendChild(newbox);
         newbox.className = "box";
         newbox.id = "box" + index.toString();
-
         if(editMode){
             var deletebutton = document.createElement("SPAN");
             deletebutton.className = "deletebutton";
@@ -222,12 +201,56 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
         textspan.className = "textspan";
         textspan.innerHTML = feed[index];
         newbox.appendChild(textspan);
+        newbox.onclick = function(){
+            currentScroll = this.getElementsByTagName("SPAN")[0].innerHTML;
+            console.log(currentScroll);
+            loadscroll();
+        }
         boxes.push(newbox);
+        
     }
     document.getElementById("textinput").select();
     //uncomment to add math:
     //MathJax.Hub.Typeset();//tell Mathjax to update the math
 }
+
+function loadscroll(){
+
+    var httpc666 = new XMLHttpRequest();
+    httpc666.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            scroll = this.responseText;
+            document.getElementById("board1").value = scroll;
+
+        }
+    };
+    httpc666.open("GET", "fileloader.php?filename=scrolls/" + currentScroll, true);
+    httpc666.send();
+
+}
+
+document.getElementById("board1").onkeyup = function() {
+    
+        board1 = this.value;
+        var httpc = new XMLHttpRequest();
+        var url = "filesaver.php";        
+        httpc.open("POST", url, true);
+        httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+        httpc.send("data="+encodeURIComponent(board1)+"&filename=scrolls/" + currentScroll);//send text to filesaver.php        
+    
+} 
+
+
+var httpc2 = new XMLHttpRequest();
+httpc2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        board1 = this.responseText;
+        document.getElementById("board1").value = board1;
+    }
+};
+
+httpc2.open("GET", "fileloader.php?filename=scrolls/" + currentScroll, true);
+httpc2.send();
 
 oldfeed =[];
 function deletetext(){
@@ -277,9 +300,7 @@ document.getElementById("refresh").onclick = function(){
     document.getElementById("header").style.display = "none";
     document.getElementById("editbutton").style.display ="block";
     
-        document.getElementById("link1").style.display = "block";
-        document.getElementById("link2").style.display = "block";
-    
+
     loadfeed();
 }
 
@@ -295,9 +316,6 @@ document.getElementById("textinput").onkeydown = function(a) {
         document.getElementById("header").style.display = "none";
         document.getElementById("editbutton").style.display ="block";
         
-        document.getElementById("link1").style.display = "block";
-        document.getElementById("link2").style.display = "block";
-
 
         loadfeed();
     }
@@ -335,9 +353,7 @@ document.getElementById("textinput").onkeydown = function(a) {
 
 document.getElementById("editbutton").onclick = function(){
     this.style.display = "none";
-    document.getElementById("link1").style.display = "none";
-    document.getElementById("link2").style.display = "none";
-    
+
     editMode = true;
     loadfeed();
     document.getElementById("header").style.display = "block";
@@ -486,6 +502,7 @@ img{
     border-radius:10px;
     padding: 10px 10px 10px 10px;
     background-color:#9f8767;
+    font-size:2em;
 }
 </style>
 </body>

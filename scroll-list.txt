@@ -1,10 +1,10 @@
 [
-    "books",
     "trash_magic",
     "trash_magic_server",
     "magic_dump",
     "hypercube",
     "voice_of_the_slime",
     "skeletron",
-    "geometron"
+    "geometron",
+    "books"
 ]

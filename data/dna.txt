@@ -7,6 +7,7 @@
         "index.html",
         "readme.html",
         "readmeeditor.html",
+        "scroll-list.txt",
         "trashmagic.css",
         "trashmagic.js",
         "trashrobot-board1.txt",
@@ -31,5 +32,12 @@
         "replicator.txt",
         "text2php.txt",
         "uploadimage.txt"
+    ],
+    "scrolls": [
+        "books",
+        "hypercube",
+        "magic_dump",
+        "trash_magic",
+        "trash_magic_server"
     ]
 }
