@@ -8,33 +8,33 @@
 
 # [Trash Magic Ontology](https://github.com/lafeLabs/ontology)
 
-In Trash Magic we build everything we need for a good life from trash and things we can grow and spread it using self-replicating media.
+In Trash Magic we build everything we need for a good life from trash and things we can grow and spread it using self-replicating media.  We build communal ontologies which replicate trash magic, and entangle trash magic with other memes that people want to replicate to spread trash magic to the world.
 
-1. make a new page for a person, place or thing.
-2. make a new server
-3. put the server on the magic dump
+1. Create a world
+2. Make a new server
+3. Put the server on the magic dump
 
-## 1. Replicate Trash Magic Page
+## 1. Create a world
 
-We make pages for things which spread trash magic.  These things include people who all help to spread the network, as well as physical products we make from trash and distribute for free, and public shared spaces we use as the platform on which we build the physical network.
+By default you are editing the trash magic scroll.  Just edit, and spread your memes.
 
-To create a new page from any given page, click on the link to "webeditor.html", which is generally at the top of most Trash Magic pages.  Enter the name of the new page in the input marked "name of new file:".
+![screenshot](https://raw.githubusercontent.com/LafeLabs/ontology/main/trashmagic/screenshot1.png)
 
-![screenshot of where on editor to enter the name of the file](https://raw.githubusercontent.com/LafeLabs/network/main/trashmagic/editor-screenshot-1b.png)
+Create a new scroll by clicking the "edit" button, then entering the name of a new scroll in the text box at the top of the screen, and hit enter.  Then you can just type in the box at the bottom of the screen to edit that scroll. 
 
-Once you have made the page, create a hyperlink to it from some existing page.  This can be whatever the index page is from the network you are building your page in.
-
-![screenshot of where to enter the code fort the link to the new page](https://raw.githubusercontent.com/LafeLabs/network/main/trashmagic/editor-screenshot-2b.png)
-
-Once you have created the new page and linked to it, go back to the main page, click the link.
+![screenshot](https://raw.githubusercontent.com/LafeLabs/ontology/main/trashmagic/screenshot2.png)
 
 
-![screenshot of the link to click to go to your new page](https://raw.githubusercontent.com/LafeLabs/network/main/trashmagic/editor-screenshot-3b.png)
+Click on an element(not in edit mode) to load that scroll.
 
-Post up on the board whatever your message is to the community about what you can offer and what you need.  This is a mutual aid system, ask for help and offer it, and be creative!
+![screenshot](https://raw.githubusercontent.com/LafeLabs/ontology/main/trashmagic/screenshot3.png)
 
 
-![screenshot showing how to update the board](https://raw.githubusercontent.com/LafeLabs/network/main/trashmagic/editor-screenshot-4b.png)
+When you are in edit mode, delete or move scrolls by clicking on the buttons.  The icons at the upper left and right reload the feed and reset the feed to a default trash magic configuration, respectively. 
+
+
+![screenshot](https://raw.githubusercontent.com/LafeLabs/ontology/main/trashmagic/screenshot4.png)
+
 
 
 ## 2. Replicate Trash Magic Server
