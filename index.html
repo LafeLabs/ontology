@@ -26,6 +26,8 @@
     <META NAME="robots" CONTENT="noindex,nofollow">
 
 <script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src = "trashmagic.js"></script>
+
 </head>
 <body>    
 
@@ -120,7 +122,7 @@ pagename = pagename.replace(/\//g, "\/<br/>");
 
 
 function redraw(){
-    document.getElementById("feed").innerHTML = "<h1>" + feedname + "</h1>";
+    document.getElementById("feed").innerHTML = "<h1>" + currentScroll + "</h1>";
    // document.getElementById("feed").innerHTML += "<h1>" + pagename + "</h1>";
     document.getElementById("feed").innerHTML += "\n<div id  = \"qrcode\"></div>";
 
@@ -152,6 +154,9 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
             deletebutton.onclick = function(){
                 boxindex = parseInt(this.parentElement.id.substring(3));
                 deletetext();
+                currentScroll = "trash_magic";
+                loadscroll();
+
             }
 
             var upbutton = document.createElement("SPAN");
@@ -212,6 +217,14 @@ qrcode = new QRCode(document.getElementById("qrcode"), {
     document.getElementById("textinput").select();
     //uncomment to add math:
     //MathJax.Hub.Typeset();//tell Mathjax to update the math
+
+    titles = document.getElementsByTagName("H1");
+    for(var index = 0;index < titles.length;index++){
+        rainbowstring(titles[index]);    
+    }
+    
+    rainbow(document.getElementsByClassName("box"));
+
 }
 
 function loadscroll(){
@@ -421,6 +434,7 @@ H1{
     cursor:pointer;
     border-radius:0.2em;
     color:red;
+    background-color:#80808080;
 }
 .deletebutton:hover{
     background-color:#00a000;
@@ -504,6 +518,7 @@ img{
     background-color:#9f8767;
     font-size:2em;
 }
+
 </style>
 </body>
 </html>
