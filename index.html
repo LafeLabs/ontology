@@ -72,34 +72,36 @@ document.getElementById("header").style.display = "none";
 
 feed = [];
 
-var httpc = new XMLHttpRequest();
-    httpc.onreadystatechange = function() {
+var httpc777 = new XMLHttpRequest();
+    httpc777.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
         feed = JSON.parse(this.responseText);
         redraw();
     }
 };
-httpc.open("GET", "fileloader.php?filename=" + feedfilename, true);
-httpc.send();
+httpc777.open("GET", "fileloader.php?filename=" + feedfilename, true);
+httpc777.send();
 
 
 
-text = "";
+thetext = "";
 document.getElementById("textinput").onchange = function(){
-    text = this.value;
-    text = text.replace(/\s/g, "_"); 
-    var httpc = new XMLHttpRequest();
-    httpc.onreadystatechange = function() {
+    thetext = this.value;
+    thetext = thetext.replace(/\s/g, "_"); 
+    var httpc555 = new XMLHttpRequest();
+    httpc555.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             feed = JSON.parse(this.responseText);
-            feed.unshift(text);
+            console.log(thetext);
+
+            feed.unshift(thetext);
             redraw();
             savejson();
             document.getElementById("textinput").value = "";    
         }
     };
-    httpc.open("GET", "fileloader.php?filename=" + feedfilename, true);
-    httpc.send();   
+    httpc555.open("GET", "fileloader.php?filename=" + feedfilename, true);
+    httpc555.send();   
 }
 
 
@@ -126,19 +128,19 @@ function redraw(){
    // document.getElementById("feed").innerHTML += "<h1>" + pagename + "</h1>";
     document.getElementById("feed").innerHTML += "\n<div id  = \"qrcode\"></div>";
 
-codesquaresize = 170;
-marginsize = 40;
-fontsize = 12;
-//globalurl = "http://www.trashrobot.org/qrcode.html";
-globalurl = window.location.href;
-qrcode = new QRCode(document.getElementById("qrcode"), {
-	text: globalurl,
-	width: codesquaresize,
-	height: codesquaresize,
-	colorDark : "#000000",
-	colorLight : "#ffffff",
-	correctLevel : QRCode.CorrectLevel.H
-});
+    codesquaresize = 170;
+    marginsize = 40;
+    fontsize = 12;
+    //globalurl = "http://www.trashrobot.org/qrcode.html";
+    globalurl = window.location.href;
+    qrcode = new QRCode(document.getElementById("qrcode"), {
+    	text: globalurl,
+    	width: codesquaresize,
+    	height: codesquaresize,
+    	colorDark : "#000000",
+    	colorLight : "#ffffff",
+    	correctLevel : QRCode.CorrectLevel.H
+    });
 
     boxes= [];
     for(var index = 0;index < feed.length;index++){

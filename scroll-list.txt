@@ -1,6 +1,5 @@
 [
     "follow_the_white_rabbit",
-    "trash_magic",
     "trash_magic_server",
     "magic_dump",
     "hypercube",
