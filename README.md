@@ -6,7 +6,7 @@
 ## [FOLLOW TRASH ROBOT ON TIKTOK!](https://www.tiktok.com/@trash_robot)
 ## [LOCALHOST](http://localhost)
 
-# [TRASH MAGIC NETWORK!](https://github.com/lafeLabs/network)
+# [Trash Magic Ontology](https://github.com/lafeLabs/ontology)
 
 In Trash Magic we build everything we need for a good life from trash and things we can grow and spread it using self-replicating media.
 
@@ -52,7 +52,7 @@ sudo apt install php libapache2-mod-php -y
 cd /var/www/html
 sudo rm index.html
 sudo apt install curl
-sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/network/main/php/replicator.txt
+sudo curl -o replicator.php https://raw.githubusercontent.com/LafeLabs/ontology/main/php/replicator.txt
 cd ..
 sudo chmod -R 0777 *
 cd html
