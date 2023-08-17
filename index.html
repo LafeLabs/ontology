@@ -122,13 +122,16 @@ globalurl = window.location.href;
 
 pagename = window.location.href.split("://")[1];
 pagename = pagename.replace(/index.html/g, ""); 
-pagename = pagename.replace(/\//g, "\/<br/>"); 
+//pagename = pagename.replace(/\//g, "\/<br/>"); 
 
 
 function redraw(){
-    document.getElementById("feed").innerHTML = "<h1>" + currentScroll + "</h1>";
-   // document.getElementById("feed").innerHTML += "<h1>" + pagename + "</h1>";
-    document.getElementById("feed").innerHTML += "\n<div id  = \"qrcode\"></div>";
+  
+  document.getElementById("feed").innerHTML = "\n<div id  = \"qrcode\"></div>";
+  
+    document.getElementById("feed").innerHTML += "<h1>" + currentScroll + "</h1>";
+//    document.getElementById("feed").innerHTML += "<h1>" + pagename + "</h1>";
+  
 
     codesquaresize = 170;
     marginsize = 40;
@@ -215,6 +218,10 @@ function redraw(){
             newbox.onclick = function(){
                 currentScroll = this.getElementsByClassName("textspan")[0].innerHTML;
                 loadscroll();
+                //redraw();
+                document.getElementById("feed").getElementsByTagName("H1")[0].innerHTML = currentScroll;
+                rainbowstring(document.getElementById("feed").getElementsByTagName("H1")[0]);    
+
             }            
         }
 
