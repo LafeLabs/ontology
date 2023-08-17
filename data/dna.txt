@@ -3,6 +3,7 @@
         "README.md",
         "fork.html",
         "geometron.js",
+        "hypercube.html",
         "index-board1.txt",
         "index.html",
         "readme.html",
