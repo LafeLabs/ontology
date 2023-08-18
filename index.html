@@ -30,6 +30,7 @@
 <body>    
 <a id = "hyperlink" href = "hypercube.html">GEOMETRON HYPERCUBE</a>
 <a id = "forklink" href = "fork.html">FORK NEW WORLDS</a>
+<a id = "scrolllink" href = "scrollset.html">REPLICATE SCROLLS</a>
 
 <div id = "editbutton" ><span style = "color:red;">!!</span>EDIT LIST<span style = "color:red">!!</span></div>
 <div id = "header">
@@ -121,6 +122,8 @@ globalurl = window.location.href;
 
 pagename = window.location.href.split("://")[1];
 pagename = pagename.replace(/index.html/g, ""); 
+pangenameArray = pagename.split("/");
+
 //pagename = pagename.replace(/\//g, "\/<br/>"); 
 
 
@@ -128,9 +131,16 @@ function redraw(){
   
   document.getElementById("feed").innerHTML = "\n<div id  = \"qrcode\"></div>";
   
+
+
+    for(var index = 0;index < pangenameArray.length;index++){
+        if(pangenameArray[index].length > 0){
+            document.getElementById("feed").innerHTML += "<h1>" + pangenameArray[index] + "/</h1>";                    
+        }
+
+    }
+
     document.getElementById("feed").innerHTML += "<h1>" + currentScroll + "</h1>";
-//    document.getElementById("feed").innerHTML += "<h1>" + pagename + "</h1>";
-  
 
     codesquaresize = 170;
     marginsize = 40;
@@ -544,6 +554,12 @@ img{
     position:absolute;
     right:0px;
     top:0px;
+    font-size:2em;
+}
+#scrolllink{
+    position:absolute;
+    right:0px;
+    top:1.2em;
     font-size:2em;
 }
 </style>
