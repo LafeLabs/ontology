@@ -1,5 +1,5 @@
 {
-    "server": "https://trashrobot.org/ontoloty/",
+    "server": "https://trashrobot.org/quests/",
     "scrolls": [
         "books",
         "follow_the_white_rabbit",
