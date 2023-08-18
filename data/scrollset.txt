@@ -3,6 +3,7 @@
     "scrolls": [
         "books",
         "follow_the_white_rabbit",
+        "foo",
         "geometron",
         "hypercube",
         "magic_dump",

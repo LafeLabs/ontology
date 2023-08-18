@@ -328,8 +328,8 @@ function loadfeed(){
 document.getElementById("nuke").onclick = function(){
     feed = resetfeed;
     
-    var httpc = new XMLHttpRequest();
-    httpc.onreadystatechange = function() {
+    var httpc666 = new XMLHttpRequest();
+    httpc666.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             scrollset = JSON.parse(this.responseText);
             resetfeed = scrollset.scrolls;
@@ -339,8 +339,8 @@ document.getElementById("nuke").onclick = function(){
 
         }
     };
-    httpc.open("GET", "fileloader.php?filename=data/scrollset.txt", true);
-    httpc.send();            
+    httpc666.open("GET", "fileloader.php?filename=data/scrollset.txt", true);
+    httpc666.send();            
     
 }
 
