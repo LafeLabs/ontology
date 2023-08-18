@@ -327,8 +327,21 @@ function loadfeed(){
 
 document.getElementById("nuke").onclick = function(){
     feed = resetfeed;
-    redraw();
-    savejson();
+    
+    var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            scrollset = JSON.parse(this.responseText);
+            resetfeed = scrollset.scrolls;
+            feed = resetfeed;
+            redraw();
+            savejson();
+
+        }
+    };
+    httpc.open("GET", "fileloader.php?filename=" + feedfilename, true);
+    httpc.send();            
+    
 }
 
 document.getElementById("refresh").onclick = function(){
