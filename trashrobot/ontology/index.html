@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+
+        EVERYTHING IS PHYSICAL
+        EVERYTHING IS FRACTAL
+        EVERYTHING IS RECURSIVE
+        NO MONEY 
+        MO MINING 
+        NO PROPERTY
+        LOOK AT THE INSECTS
+        LOOK AT THE FUNGI
+        LANGUAGE IS HOW THE MIND PARSES REALITY
+
+    -->
+    
+
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAZ4efAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEREREREREREREAAAAAAREREQEREREBERERAQEBAQEREREBAQEBAREREQEBAQEBERARAQEBAQEQEAEBAQEBARAAEQEBAQEBEBERAQEBAQEREREBERERAREREAAAAAAAEREQERERERARERAAAAAAABEREREBEQEREREREQAAAREREAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon" />
+
+    
+    <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src = "trashmagic.js"></script>
+<script src = "geometron.js"></script>
+</head>
+<body>    
+<a id = "hyperlink" href = "hypercube.html">GEOMETRON HYPERCUBE</a>
+<a id = "forklink" href = "fork.html">FORK NEW WORLDS</a>
+<a id = "scrolllink" href = "scrollset.html">REPLICATE SCROLLS</a>
+
+<div id = "editbutton" ><span style = "color:red;">!!</span>EDIT LIST<span style = "color:red">!!</span></div>
+<div id = "header">
+    <!--
+    <a id = "uplink" href = "index.html"><img src = "iconsymbols/home.svg"/></a>
+-->
+    <span class = "button" id = "refresh">↻</span>
+    <input id = "textinput"/>
+    <span class  = "button" id = "nuke">!💥!</span>
+</div>
+<div id = "feed"></div>
+<textarea id = "board1"></textarea>
+<script>
+
+currentScroll = "trash_magic";
+
+//for other feeds, change the name of the feed file to [feedname].txt:
+feedfilename = "scroll-list.txt";
+//CHANG ETHE NAME OF THE FEED HERE AS WELL:
+feedname = "Trash Magic Ontology";
+
+//add a default feed here for any given feed instance:
+
+resetfeed = [
+    "trash_magic",
+    "trash_magic_server",
+    "magic_dump",
+    "hypercube",
+    "voice_of_the_slime",
+    "skeletron",
+    "geometron",
+    "books"
+];
+
+
+
+
+editMode = false;
+document.getElementById("header").style.display = "none";
+
+
+feed = [];
+
+var httpc777 = new XMLHttpRequest();
+    httpc777.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        feed = JSON.parse(this.responseText);
+        redraw();
+    }
+};
+httpc777.open("GET", "fileloader.php?filename=" + feedfilename, true);
+httpc777.send();
+
+
+
+thetext = "";
+document.getElementById("textinput").onchange = function(){
+    thetext = this.value;
+    thetext = thetext.replace(/\s/g, "_"); 
+    var httpc555 = new XMLHttpRequest();
+    httpc555.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            feed = JSON.parse(this.responseText);
+            console.log(thetext);
+
+            feed.unshift(thetext);
+            redraw();
+            savejson();
+            document.getElementById("textinput").value = "";    
+        }
+    };
+    httpc555.open("GET", "fileloader.php?filename=" + feedfilename, true);
+    httpc555.send();   
+}
+
+
+
+function savejson(){
+    var url = "filesaver.php";        
+    var httpc2 = new XMLHttpRequest();
+    httpc2.open("POST", url, true);
+    httpc2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    httpc2.send("data="+encodeURIComponent(JSON.stringify(feed,null,"    "))+"&filename=" + feedfilename);//send text to filesaver.php
+}
+
+boxindex = 0;
+
+globalurl = window.location.href;
+
+pagename = window.location.href.split("://")[1];
+pagename = pagename.replace(/index.html/g, ""); 
+pangenameArray = pagename.split("/");
+
+//pagename = pagename.replace(/\//g, "\/<br/>"); 
+
+
+function redraw(){
+  
+  document.getElementById("feed").innerHTML = "\n<div id  = \"qrcode\"></div>";
+  
+
+
+    for(var index = 0;index < pangenameArray.length;index++){
+        if(pangenameArray[index].length > 0){
+            document.getElementById("feed").innerHTML += "<h1>" + pangenameArray[index] + "/</h1>";                    
+        }
+
+    }
+
+    document.getElementById("feed").innerHTML += "<h1>" + currentScroll + "</h1>";
+
+    codesquaresize = 170;
+    marginsize = 40;
+    fontsize = 12;
+    //globalurl = "http://www.trashrobot.org/qrcode.html";
+    globalurl = window.location.href;
+    qrcode = new QRCode(document.getElementById("qrcode"), {
+    	text: globalurl,
+    	width: codesquaresize,
+    	height: codesquaresize,
+    	colorDark : "#000000",
+    	colorLight : "#ffffff",
+    	correctLevel : QRCode.CorrectLevel.H
+    });
+
+    boxes= [];
+    for(var index = 0;index < feed.length;index++){
+        var newbox = document.createElement("DIV");
+        document.getElementById("feed").appendChild(newbox);
+        newbox.className = "box";
+        newbox.id = "box" + index.toString();
+        if(editMode){
+            var deletebutton = document.createElement("SPAN");
+            deletebutton.className = "deletebutton";
+            deletebutton.innerHTML = "X";
+            newbox.appendChild(deletebutton);
+            deletebutton.onclick = function(){
+                boxindex = parseInt(this.parentElement.id.substring(3));
+                deletetext();
+                currentScroll = "trash_magic";
+                loadscroll();
+
+            }
+
+            var upbutton = document.createElement("SPAN");
+            upbutton.className = "deletebutton";
+            upbutton.innerHTML = "MOVE UP";
+            newbox.appendChild(upbutton);
+            upbutton.onclick = function(){
+                boxindex = parseInt(this.parentElement.id.substring(3));
+                var newfeed = [];
+                for(var index = 0;index < boxindex - 1;index++){
+                    newfeed.push(feed[index]);
+                }
+                newfeed.push(feed[boxindex]);
+                newfeed.push(feed[boxindex - 1]);
+                for(var index = boxindex + 1;index < feed.length;index++){
+                    newfeed.push(feed[index]);
+                }
+                feed = newfeed;
+                redraw();
+                savejson();
+            }
+
+            var downbutton = document.createElement("SPAN");
+            downbutton.className = "deletebutton";
+            downbutton.innerHTML = "MOVE DOWN";
+            newbox.appendChild(downbutton);
+            downbutton.onclick = function(){
+                boxindex = parseInt(this.parentElement.id.substring(3));
+                var newfeed = [];
+                for(var index = 0;index < boxindex;index++){
+                    newfeed.push(feed[index]);
+                }
+                newfeed.push(feed[boxindex + 1]);
+                newfeed.push(feed[boxindex]);
+                for(var index = boxindex + 2;index < feed.length;index++){
+                    newfeed.push(feed[index]);
+                }
+                feed = newfeed;
+                redraw();
+                savejson();
+            }
+            
+            
+        }
+
+        var textspan = document.createElement("span");
+        textspan.className = "textspan";
+        textspan.innerHTML = feed[index];
+        newbox.appendChild(textspan);
+        
+        if(!editMode){
+            newbox.onclick = function(){
+                currentScroll = this.getElementsByClassName("textspan")[0].innerHTML;
+                loadscroll();
+                //redraw();
+                document.getElementById("feed").getElementsByTagName("H1")[0].innerHTML = currentScroll;
+                rainbowstring(document.getElementById("feed").getElementsByTagName("H1")[0]);    
+
+            }            
+        }
+
+        boxes.push(newbox);
+        
+    }
+    document.getElementById("textinput").select();
+    //uncomment to add math:
+    //MathJax.Hub.Typeset();//tell Mathjax to update the math
+
+    titles = document.getElementsByTagName("H1");
+    for(var index = 0;index < titles.length;index++){
+        rainbowstring(titles[index]);    
+    }
+    
+    rainbow(document.getElementsByClassName("box"));
+
+}
+
+function loadscroll(){
+
+    var httpc666 = new XMLHttpRequest();
+    httpc666.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            scroll = this.responseText;
+            document.getElementById("board1").value = scroll;
+
+        }
+    };
+    httpc666.open("GET", "fileloader.php?filename=scrolls/" + currentScroll, true);
+    httpc666.send();
+
+}
+
+document.getElementById("board1").onkeyup = function() {
+    
+        board1 = this.value;
+        var httpc = new XMLHttpRequest();
+        var url = "filesaver.php";        
+        httpc.open("POST", url, true);
+        httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+        httpc.send("data="+encodeURIComponent(board1)+"&filename=scrolls/" + currentScroll);//send text to filesaver.php        
+    
+} 
+
+
+var httpc2 = new XMLHttpRequest();
+httpc2.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        board1 = this.responseText;
+        document.getElementById("board1").value = board1;
+    }
+};
+
+httpc2.open("GET", "fileloader.php?filename=scrolls/" + currentScroll, true);
+httpc2.send();
+
+oldfeed =[];
+function deletetext(){
+    var httpc = new XMLHttpRequest();
+    httpc.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            oldfeed = feed;
+            feed = JSON.parse(this.responseText);
+            var tempfeed = [];
+            for(var index = 0;index < feed.length;index++){
+                if(feed[index] != oldfeed[boxindex]){
+                    tempfeed.push(feed[index]);
+                }
+            }
+            feed = tempfeed;
+            redraw();
+            savejson();
+        }
+    };
+    httpc.open("GET", "fileloader.php?filename=" + feedfilename, true);
+    httpc.send();            
+}
+
+function loadfeed(){
+        var httpc = new XMLHttpRequest();
+        httpc.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                feed = JSON.parse(this.responseText);
+                redraw();
+            }
+        };
+        httpc.open("GET", "fileloader.php?filename=" + feedfilename, true);
+        httpc.send();            
+
+}
+
+
+
+document.getElementById("nuke").onclick = function(){
+    feed = resetfeed;
+    
+    var httpc666 = new XMLHttpRequest();
+    httpc666.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            scrollset = JSON.parse(this.responseText);
+            resetfeed = scrollset.scrolls;
+            feed = resetfeed;
+            redraw();
+            savejson();
+
+        }
+    };
+    httpc666.open("GET", "fileloader.php?filename=data/scrollset.txt", true);
+    httpc666.send();            
+    
+}
+
+document.getElementById("refresh").onclick = function(){
+    editMode = false;
+    document.getElementById("header").style.display = "none";
+    document.getElementById("editbutton").style.display ="block";
+    document.getElementById("board1").style.display ="block";
+    document.getElementById("feed").style.bottom ="50%";
+
+
+    loadfeed();
+}
+
+document.getElementById("textinput").value = "";
+document.getElementById("textinput").select();
+
+textfieldindex = 0;
+
+document.getElementById("textinput").onkeydown = function(a) {
+    var charCode = a.keyCode || a.which;
+    if(charCode == 033){
+        editMode = false;
+        document.getElementById("header").style.display = "none";
+        document.getElementById("editbutton").style.display ="block";
+        document.getElementById("board1").style.display ="block";
+        document.getElementById("feed").style.bottom ="50%";
+
+        loadfeed();
+    }
+    if(charCode == 015){
+            loadfeed();
+    }
+    if(charCode == 046){
+        //up arrow: next
+        textfieldindex++;
+        if(textfieldindex >= feed.length){
+            textfieldindex = -1;
+        }
+        if(textfieldindex != -1){
+            this.value = feed[textfieldindex];
+        }
+        else{
+            this.value = "";
+        }
+    }
+    if(charCode == 050){
+        //down arrow: prev
+        textfieldindex--;
+        if(textfieldindex < -1){
+            textfieldindex = feed.length - 1;
+        }
+        if(textfieldindex != -1){
+            this.value = feed[textfieldindex];
+        }
+        else{
+            this.value = "";
+        }
+    }
+}
+
+
+document.getElementById("editbutton").onclick = function(){
+    this.style.display = "none";
+
+    editMode = true;
+    loadfeed();
+    document.getElementById("header").style.display = "block";
+    
+    document.getElementById("board1").style.display ="none";
+    document.getElementById("feed").style.bottom ="1%";
+    document.getElementById("textinput").select();
+}
+
+googleyeyes(16);
+
+</script>
+<style>
+body{
+    overflow:hidden;
+    background-color:#9f8767;
+    font-family:Comic Sans MS;
+}
+a{
+    color:blue;
+}
+H1{
+    TEXT-ALIGN:CENTER;
+}
+.box{
+    border:solid;
+    margin-top:1em;
+    border-width:5px;
+    padding:0.5em 0.5em 0.5em 0.5em;
+    border-radius:0.5em;
+    cursor:pointer;
+}
+#header{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    height:80px;
+    border-bottom:solid;
+    border-color:#f9429e;
+    background-color:black;
+}
+#textinput{
+    width:80%;
+    height:50px;
+    border:solid;
+    border-color:#f9429e;
+    font-size:26px;
+    font-family:courier;
+    display:block;
+    margin:auto;
+    margin-top:5px;
+    background-color:black;
+    color:#00ff00;
+}
+#feed{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:100px;
+    bottom:50%;
+    overflow:scroll;
+    font-size:2em;
+    padding:1em 1em 1em 1em;
+}
+.deletebutton{
+    border:solid;
+    border-color:#00ff00;
+    width:1em;
+    cursor:pointer;
+    border-radius:0.2em;
+    color:red;
+    background-color:#80808080;
+}
+.deletebutton:hover{
+    background-color:#00a000;
+}
+.deletebutton:active{
+    background-color:yellow;
+}
+.textspan{
+}
+#nuke{
+    position:absolute;
+    right:0px;
+    top:0px;
+    font-size:40px;
+    border:solid;
+    border-color:red;
+    color:red;
+    cursor:pointer;
+}
+#refresh{
+    position:absolute;
+    left:0px;
+    top:0px;
+    font-size:40px;
+    border:solid;
+    border-color:red;
+    color:red;
+    cursor:pointer;
+}
+.button:hover{
+    background-color:#800000;
+}
+.button:active{
+    background-color:yellow;
+}
+#uplink{
+    position:absolute;
+    left:0px;
+    top:0px;
+}
+#uplink img{
+    width:40px;
+}
+#editbutton{
+    position:absolute;
+    z-index:2;
+    font-size:50px;
+    text-align:center;
+    top:5px;
+    border-width:5px;
+    border-radius:10px;
+    left:30%;
+    right:30%;
+    border:solid;
+    cursor:pointer;
+}
+#editbutton:hover{
+    background-color:green;
+}
+#editbutton:active{
+    background-color:yellow;
+}
+img{
+    max-width:80%;
+}
+#qrcode{
+    display:block;
+    margin:auto;
+    text-align:center;
+}
+#board1{
+    position:absolute;
+    left:1%;
+    width:90%;
+    height:40%;
+    top:51%;
+    border:solid;
+    font-family:Comic Sans MS;
+    border-radius:10px;
+    padding: 10px 10px 10px 10px;
+    background-color:#9f8767;
+    font-size:2em;
+}
+#hyperlink{
+    font-size:2em;
+}
+#forklink{
+    position:absolute;
+    right:0px;
+    top:0px;
+    font-size:2em;
+}
+#scrolllink{
+    position:absolute;
+    right:0px;
+    top:1.2em;
+    font-size:2em;
+}
+</style>
+</body>
+</html>

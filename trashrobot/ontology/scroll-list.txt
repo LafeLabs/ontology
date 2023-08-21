@@ -1,0 +1,18 @@
+[
+    "self_replicating_web_code",
+    "tiktok",
+    "mastodon",
+    "trash_robot",
+    "lafe_spietz",
+    "the_street_network",
+    "the_watershed_network",
+    "fashion",
+    "products",
+    "the_game_of_chaos",
+    "quantum_art_dot_org",
+    "quantum_noise_dot_org",
+    "upcycle_robotics",
+    "books",
+    "geometron",
+    "trash_magic"
+]

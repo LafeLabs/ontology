@@ -1,0 +1,7 @@
+[
+    "quantum_product_consulting",
+    "shopping_center_social_networking",
+    "music_distribution",
+    "web_servers_made_of_trash",
+    "robots_made_of_trash"
+]
